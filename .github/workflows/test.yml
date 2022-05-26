@@ -12,22 +12,17 @@ jobs:
         python-version: ['3.6', '3.8']
 
     steps:
-    - name: Add deadnakes ppa
-      run: |
-        sudo apt install -qqyf software-properties-common
-        sudo add-apt-repository ppa:deadsnakes/ppa -y
-    - name: Install dependencies
-      run: |
-        sudo apt update -qq
-        sudo apt install --no-install-recommends -qqyf python3.6
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: install tox
       run: |
         python -m pip install --upgrade pip
-        python -m pip install tox
+        python -m pip install tox tox-py==1.1.0
+
     - name: run tox
-      run: tox
+      run: tox --py current
