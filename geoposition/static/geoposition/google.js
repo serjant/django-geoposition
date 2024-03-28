@@ -86,7 +86,7 @@ if (jQuery != undefined) {
                                 });
                                 $li.appendTo($ul);
                             });
-                            $mapContainer.after($ul);
+                            $searchInput.after($ul);
                         }
                     }
                 });
